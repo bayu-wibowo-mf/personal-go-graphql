@@ -2,4 +2,7 @@
 Personal prototype for GraphQL using Go Language
 
 # How to run
-```go run server.go```
+```shell
+cd graph
+go run server.go
+```
