@@ -3,6 +3,6 @@ Personal prototype for GraphQL using Go Language
 
 # How to run
 ```shell
-cd graph
+cd graphql-prototype
 go run server.go
 ```
