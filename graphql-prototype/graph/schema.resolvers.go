@@ -25,9 +25,36 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 	return todo, nil
 }
 
+// CreateMovie is the resolver for the createMovie field.
+func (r *mutationResolver) CreateMovie(ctx context.Context, input model.NewMovie) (*model.Movie, error) {
+	movie := model.Movie{
+		Title: input.Title,
+		URL:   input.URL,
+	}
+
+	_, err := r.DB.Model(&movie).Insert()
+	if err != nil {
+		return nil, fmt.Errorf("error inserting new movie %v", err)
+	}
+
+	return &movie, nil
+}
+
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 	return r.todos, nil
+}
+
+// Movies is the resolver for the movies field.
+func (r *queryResolver) Movies(ctx context.Context) ([]*model.Movie, error) {
+	var movies []*model.Movie
+
+	err := r.DB.Model(&movies).Select()
+	if err != nil {
+		return nil, err
+	}
+
+	return movies, nil
 }
 
 // User is the resolver for the user field.

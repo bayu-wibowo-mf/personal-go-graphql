@@ -14,8 +14,16 @@ type User {
   name: String!
 }
 
+type Movie {
+  id: ID!
+  title: String!
+  url: String!
+  releaseDate: String!
+}
+
 type Query {
   todos: [Todo!]!
+  movies: [Movie!]!
 }
 
 input NewTodo {
@@ -23,6 +31,12 @@ input NewTodo {
   userId: String!
 }
 
+input NewMovie {
+  title: String!
+  url: String!
+}
+
 type Mutation {
   createTodo(input: NewTodo!): Todo!
+  createMovie(input: NewMovie!): Movie!
 }
