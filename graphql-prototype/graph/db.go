@@ -12,9 +12,5 @@ func Connect() *pg.DB {
 	if err != nil {
 		panic(err)
 	}
-	db := pg.Connect(opt)
-	if _, DBStatus := db.Exec("SELECT 1"); DBStatus != nil {
-		panic(DBStatus)
-	}
-	return db
+	return pg.Connect(opt)
 }

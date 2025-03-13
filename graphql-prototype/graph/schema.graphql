@@ -21,9 +21,18 @@ type Movie {
   releaseDate: String!
 }
 
+type EmployeeDemography {
+  dateKey: String!
+  tenantUUID: String!
+  demographyCategory: String!
+  demographyName: String!
+  demographyValue: Float!
+}
+
 type Query {
   todos: [Todo!]!
   movies: [Movie!]!
+  employeeDemography: [EmployeeDemography!]!
 }
 
 input NewTodo {

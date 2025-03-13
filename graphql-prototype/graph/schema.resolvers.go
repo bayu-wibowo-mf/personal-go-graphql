@@ -57,6 +57,23 @@ func (r *queryResolver) Movies(ctx context.Context) ([]*model.Movie, error) {
 	return movies, nil
 }
 
+// EmployeeDemography is the resolver for the employeeDemography field.
+func (r *queryResolver) EmployeeDemography(ctx context.Context) ([]*model.EmployeeDemography, error) {
+	var employeeDemography []*model.EmployeeDemography
+
+	counter, err := r.DB.Model(&employeeDemography).Table("dm_employee_demography").Count()
+	if err != nil {
+		return nil, err
+	}
+	print(counter)
+
+	err = r.DB.Model(&employeeDemography).Table("dm_employee_demography").Select()
+	if err != nil {
+		return nil, err
+	}
+	return employeeDemography, nil
+}
+
 // User is the resolver for the user field.
 func (r *todoResolver) User(ctx context.Context, obj *model.Todo) (*model.User, error) {
 	return &model.User{ID: obj.UserID, Name: "User " + obj.UserID}, nil
